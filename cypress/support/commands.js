@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add(
+  'val',
+  {
+    prevSubject: ['element'],
+  },
+  (subject, value) => {
+    cy.wrap(subject).invoke('val', value).trigger('change');
+  },
+);
